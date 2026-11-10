@@ -1,15 +1,17 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Caixinha {
 
     private Membro membro;
-    private Movimentacao[] movimentacoes;
-    private int contador;
+    private List<Movimentacao> movimentacoes;
 
-    public Caixinha(Membro membro, int capacidade) {
+
+    public Caixinha(Membro membro) {
         this.membro = membro;
-        this.movimentacoes = new Movimentacao[capacidade];
-        this.contador = 0;
+        this.movimentacoes = new ArrayList<>();
     }
 
     public double getSaldo() {
@@ -20,18 +22,11 @@ public class Caixinha {
         return valor > 0;
     }
 
-    public boolean capacidadeSuficiente() {
-        return contador < movimentacoes.length;
-    }
-
     public boolean ePossivelEmprestar(double valor) {
         return valor <= membro.getSaldo();
     }
 
     public boolean contribuicao(double valor) {
-        if (!capacidadeSuficiente()) {
-            return false;
-        }
         if (!valorMaiorQueZero(valor)) {
             return false;
         }
@@ -39,16 +34,12 @@ public class Caixinha {
             return false;
         }
 
-        movimentacoes[contador] = new Movimentacao("Contribuição", valor, "registro automático");
-        contador++;
+        movimentacoes.add(new Movimentacao("Contribuição", valor, "registro automático"));
         return true;
     }
 
 
     public boolean emprestimo(double valor) {
-        if (!capacidadeSuficiente()) {
-            return false;
-        }
         if (!ePossivelEmprestar(valor)) {
             return false;
         }
@@ -59,17 +50,16 @@ public class Caixinha {
             return false;
         }
 
-        movimentacoes[contador] = new Movimentacao("Empréstimo", valor, "registro automático");
-        contador++;
+        movimentacoes.add(new Movimentacao("Empréstimo", valor, "registro automático"));
         return true;
     }
 
     public void listarHistorico() {
-        if (contador == 0) {
+        if (movimentacoes.isEmpty()) {
             System.out.println("Nenhuma movimentação registrada");
         } else {
-            for (int i = 0; i < contador; i++) {
-                System.out.println(movimentacoes[i]);
+            for (Movimentacao m : movimentacoes) {
+                System.out.println(m);
             }
         }
     }

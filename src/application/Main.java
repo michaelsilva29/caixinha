@@ -16,9 +16,7 @@ public class Main {
         System.out.println("Qual o nome do membro da caixinha?");
         String nome = sc.nextLine();
         Membro membro = new Membro(nome);
-        System.out.println("Qual a capacidade do Histórico?");
-        int capacidade = sc.nextInt();
-        Caixinha caixinha = new Caixinha(membro, capacidade);
+        Caixinha caixinha = new Caixinha(membro);
 
         int opcao = 0;
 
@@ -39,11 +37,6 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-                    if (!caixinha.capacidadeSuficiente()) {
-                        System.out.println("Erro: Capacidade insuficiente");
-                        break;
-                    }
-
                     System.out.print("Informe o valor da contribuição: ");
                     valor = sc.nextDouble();
 
@@ -61,11 +54,6 @@ public class Main {
                     break;
 
                 case 2:
-                    if (!caixinha.capacidadeSuficiente()) {
-                        System.out.println("Erro: Capacidade insuficiente");
-                        break;
-                    }
-
                     System.out.print("Informe o valor que deseja emprestar: ");
                     valor = sc.nextDouble();
 
