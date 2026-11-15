@@ -21,8 +21,8 @@ Sistema de controle de caixinha com um membro, feito em Java (console).
 
 ## 📌 Próximas versões
 - [ ] v0.2 — Substituir array por `ArrayList`
-- [ ] v0.3 — `enum` para tipo + composição de parcelas
-- [ ] v0.4 — Datas nas movimentações
+- [ ] v0.3 — Datas nas movimentações
+- [ ] v0.4 — `enum` para tipo + composição de parcelas
 - [ ] v1.0 — Persistência em banco de dados
 
 ## 🚧 Status
